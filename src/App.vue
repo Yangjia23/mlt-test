@@ -24,7 +24,7 @@ export default {
       if (!window.nativeNotify) {
         window.nativeNotify = (msg) => {
           var data = JSON.parse(msg)
-          Vconsole.log(data)
+          console.log(data)
           this.msg = msg
         }
       }
