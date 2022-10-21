@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import VConsole from 'vconsole'
-const Vconsole = new VConsole()
 export default {
   name: 'App',
   components: {},
