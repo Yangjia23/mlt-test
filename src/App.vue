@@ -1,18 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h2>接收到的 msg:</h2>
+    <div class="box">{{ msg }}</div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import VConsole from 'vconsole'
+const Vconsole = new VConsole()
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: {},
+  created() {
+    this.initListener()
+  },
+  data() {
+    return {
+      msg: '',
+    }
+  },
+  methods: {
+    initListener() {
+      if (!window.nativeNotify) {
+        window.nativeNotify = function (msg) {
+          this.msg = msg
+          var data = JSON.parse(msg)
+          Vconsole.log(data)
+        }
+      }
+    },
+  },
 }
 </script>
 
@@ -24,5 +41,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.box {
+  width: 400px;
+  margin: 0 auto;
+  height: 200px;
+  border: 1px solid red;
 }
 </style>
