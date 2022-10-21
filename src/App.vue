@@ -22,10 +22,10 @@ export default {
   methods: {
     initListener() {
       if (!window.nativeNotify) {
-        window.nativeNotify = function (msg) {
-          this.msg = msg
+        window.nativeNotify = (msg) => {
           var data = JSON.parse(msg)
           Vconsole.log(data)
+          this.msg = msg
         }
       }
     },
